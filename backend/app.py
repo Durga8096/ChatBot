@@ -5,46 +5,35 @@ from typing import List, Optional
 from dotenv import load_dotenv
 import os
 
-# -----------------------------
-# ENV SETUP
-# -----------------------------
 load_dotenv()
 
 
-# -----------------------------
-# APP CONFIG
-# -----------------------------
+
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, restrict this
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# -----------------------------
-# DATA MODELS
-# -----------------------------
+
 class Topic(BaseModel):
     id: int
     title: str
     description: str
-    status: str  # "Not started", "In Progress", "Completed"
+    status: str  
 
 class QuestionRequest(BaseModel):
     question: str
     topics: Optional[List[Topic]] = None
 
-# -----------------------------
-# IN-MEMORY STORAGE
-# -----------------------------
+
 topics: List[Topic] = []
 
-# -----------------------------
-# ROUTES
-# -----------------------------
+
 
 @app.get("/")
 def read_root():
