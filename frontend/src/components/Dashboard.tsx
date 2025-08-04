@@ -35,7 +35,6 @@ export default function Dashboard() {
   // Calculate stats
   const completedCount = topics.filter(t => t.status === 'Completed').length;
   const inProgressCount = topics.filter(t => t.status === 'In Progress').length;
-  const notStartedCount = topics.filter(t => t.status === 'Not started').length;
   const completionRate = topics.length > 0 ? Math.round((completedCount / topics.length) * 100) : 0;
 
   const handleAdd = async () => {
